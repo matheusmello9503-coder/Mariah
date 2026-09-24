@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direção visual combinada (A + B) — Mariah Espaço Comercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --preto:#15110D;
+    --creme:#F5ECDD;
+    --texto-claro:#F3EAD9;
+    --texto-escuro:#3A2A1C;
+    --dourado:#C9A24B;
+    --marrom:#4A3323;
+    --serif:'Fraunces', serif;
+    --sans:'Nunito Sans', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; font-family:var(--sans); font-size:17px; line-height:1.6; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1160px; margin:0 auto; padding:0 24px; }
+  h1,h2,h3{ font-family:var(--serif); margin:0; }
+  em{ font-style:italic; color:var(--dourado); }
+
+  .note{ background:#222; color:#eee; font-family:Arial,sans-serif; font-size:12px; text-align:center; padding:10px 16px; }
+  .note a{ color:#fff; }
+
+  /* HEADER */
+  header{ background:var(--preto); padding:18px 0; }
+  header .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  header img.logo{ height:46px; }
+  nav{ display:flex; gap:22px; }
+  nav a{ color:var(--texto-claro); text-decoration:none; font-size:14px; font-weight:600; }
+  .btn-primary{
+    background:var(--dourado); color:var(--preto); border:none; padding:13px 24px; border-radius:6px;
+    font-family:var(--sans); font-weight:800; font-size:14px; text-decoration:none; display:inline-block; cursor:pointer;
+  }
+  .btn-ghost{
+    background:transparent; color:var(--texto-claro); border:1.5px solid var(--dourado); padding:12px 24px; border-radius:6px;
+    font-family:var(--sans); font-weight:800; font-size:14px; text-decoration:none; display:inline-block; cursor:pointer;
+  }
+  .btn-ghost-dark{
+    background:transparent; color:var(--texto-escuro); border:1.5px solid var(--marrom); padding:11px 22px; border-radius:6px;
+    font-family:var(--sans); font-weight:800; font-size:13px; text-decoration:none; display:inline-block; cursor:pointer;
+  }
+
+  /* HERO */
+  .hero{ background:var(--preto); color:var(--texto-claro); padding:80px 0 90px; text-align:center; }
+  .hero h1{ font-size:44px; font-weight:600; max-width:760px; margin:0 auto 18px; line-height:1.25; }
+  .hero .sub{ font-size:18px; max-width:560px; margin:0 auto 32px; opacity:.9; }
+  .hero .actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  /* SOBRE */
+  .sobre{ background:var(--creme); color:var(--texto-escuro); padding:90px 0; }
+  .sobre .grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .sobre .eyebrow{ font-family:var(--sans); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--dourado); font-weight:800; margin-bottom:10px; }
+  .sobre h2{ font-size:32px; font-weight:600; margin-bottom:16px; }
+  .sobre .assinatura{ margin-top:20px; font-family:var(--serif); font-style:italic; font-size:19px; color:var(--marrom); }
+  .sobre img{ border-radius:10px; }
+
+  /* ESTRUTURA */
+  .estrutura{ background:var(--preto); color:var(--texto-claro); padding:90px 0; }
+  .estrutura h2{ font-size:32px; font-weight:600; max-width:680px; margin:0 auto 44px; text-align:center; }
+  .estrutura-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .estrutura-grid .item{ border-top:1px solid var(--dourado); padding-top:14px; }
+  .estrutura-grid .n{ font-family:var(--serif); font-style:italic; color:var(--dourado); font-size:14px; }
+  .estrutura-grid h3{ font-size:17px; margin:6px 0 6px; font-weight:600; }
+  .estrutura-grid p{ font-size:13.5px; opacity:.8; margin:0; }
+
+  /* SALAS */
+  .salas{ background:var(--creme); color:var(--texto-escuro); padding:90px 0; }
+  .salas h2{ font-size:32px; font-weight:600; text-align:center; max-width:680px; margin:0 auto 10px; }
+  .salas .sub{ text-align:center; max-width:560px; margin:0 auto 44px; opacity:.8; }
+  .salas-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .sala-card{ background:var(--marrom); color:var(--texto-claro); border:1px solid var(--dourado); border-radius:24px 24px 6px 6px; padding:22px; }
+  .sala-card h3{ font-size:19px; margin:0 0 8px; color:var(--dourado); }
+  .sala-card p{ font-size:13.5px; margin:0 0 14px; opacity:.9; }
+
+  /* VALORES */
+  .valores{ background:var(--preto); color:var(--texto-claro); padding:90px 0; }
+  .valores h2{ font-size:32px; font-weight:600; text-align:center; margin-bottom:44px; }
+  .valores-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .price-card{ background:var(--marrom); border:1px solid rgba(201,162,75,.4); border-radius:14px; padding:24px 20px; text-align:center; }
+  .price-card.destaque{ border-color:var(--dourado); border-width:2px; }
+  .price-card b{ font-family:var(--sans); font-size:14px; text-transform:uppercase; letter-spacing:.04em; opacity:.85; }
+  .price-card .valor{ font-family:var(--serif); font-size:30px; color:var(--dourado); margin:10px 0; font-weight:600; }
+  .price-card small{ font-size:12px; opacity:.7; display:block; margin-top:-6px; }
+
+  /* FOOTER */
+  footer{ background:#0c0906; color:var(--texto-claro); padding:50px 0 24px; }
+  .foot-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; font-size:13.5px; opacity:.85; margin-bottom:24px; }
+  footer .copyright{ text-align:center; font-size:11px; opacity:.55; border-top:1px solid rgba(255,255,255,.1); padding-top:18px; }
+
+  @media (max-width:820px){
+    nav{ display:none; }
+    .hero h1{ font-size:30px; }
+    .sobre .grid{ grid-template-columns:1fr; }
+    .estrutura-grid, .salas-grid, .valores-grid{ grid-template-columns:repeat(2,1fr); }
+    .foot-grid{ grid-template-columns:1fr; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="note">Amostra da direção visual combinada (paleta da Proposta A + tipografia da Proposta B) · etapa 3 do processo · não é o site final</div>
+
+<header>
+  <div class="wrap">
+    <img class="logo" src="../assets/marca/logo-mariah-transparente.png" alt="Mariah Espaço Comercial">
+    <nav>
+      <a href="#">Início</a><a href="#">Sobre</a><a href="#">Salas</a><a href="#">Valores</a><a href="#">Contato</a>
+    </nav>
+    <a href="#" class="btn-primary">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Não é apenas onde você atende. É onde sua <em>presença</em> acontece.</h1>
+    <p class="sub">11 salas prontas para profissionais da saúde, da estética e de negócios, por hora, diária ou mensal, sem os custos de uma estrutura própria.</p>
+    <div class="actions">
+      <a href="#" class="btn-primary">Reservar pelo WhatsApp</a>
+      <a href="#" class="btn-ghost">Ver as salas</a>
+    </div>
+  </div>
+</section>
+
+<section class="sobre">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">A origem</div>
+      <h2>Um espaço criado com carinho, propósito e acolhimento</h2>
+      <p>Jéssica, massoterapeuta e esteticista, sempre teve dificuldade em encontrar salas prontas para atender seus clientes. Com a família, comprou um imóvel antigo em Campo Grande e reformou tudo do zero. Hoje o espaço é tocado por Rodrigo, Antônia e pela própria Jéssica.</p>
+      <p class="assinatura">Conforto para o profissional. Bem-estar para o cliente.</p>
+    </div>
+    <img src="../assets/fotos/fachada.jpg" alt="Fachada do Mariah Espaço Comercial">
+  </div>
+</section>
+
+<section class="estrutura">
+  <div class="wrap">
+    <h2>Enquanto você cuida do seu trabalho, <em>nós cuidamos de todos os detalhes</em>.</h2>
+    <div class="estrutura-grid">
+      <div class="item"><div class="n">01</div><h3>Estrutura completa</h3><p>Salas equipadas e prontas para uso, sem investimento em reforma ou mobília.</p></div>
+      <div class="item"><div class="n">02</div><h3>Climatização total</h3><p>Ar-condicionado em todas as salas.</p></div>
+      <div class="item"><div class="n">03</div><h3>Recepção acolhedora</h3><p>Sala de espera com atenção e conforto.</p></div>
+      <div class="item"><div class="n">04</div><h3>Copa equipada</h3><p>Para recarregar as energias entre atendimentos.</p></div>
+      <div class="item"><div class="n">05</div><h3>Internet e água</h3><p>Wi-fi de alta velocidade e água inclusa.</p></div>
+      <div class="item"><div class="n">06</div><h3>Limpeza</h3><p>Ambientes higienizados entre atendimentos.</p></div>
+      <div class="item"><div class="n">07</div><h3>Segurança</h3><p>Câmeras com monitoramento remoto constante.</p></div>
+      <div class="item"><div class="n">08</div><h3>Estacionamento</h3><p>No local, para você e seus clientes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="salas">
+  <div class="wrap">
+    <h2>Uma sala para cada tipo de atendimento</h2>
+    <p class="sub">11 salas equipadas, dos consultórios de saúde e estética às salas para reuniões e cursos.</p>
+    <div class="salas-grid">
+      <div class="sala-card">
+        <h3>Massoterapia</h3>
+        <p>3 salas equipadas para massoterapia.</p>
+        <a href="#" class="btn-ghost" style="padding:9px 16px; font-size:12px;">Reservar</a>
+      </div>
+      <div class="sala-card">
+        <h3>Salas com maca</h3>
+        <p>4 salas com macas montadas.</p>
+        <a href="#" class="btn-ghost" style="padding:9px 16px; font-size:12px;">Reservar</a>
+      </div>
+      <div class="sala-card">
+        <h3>Injetáveis</h3>
+        <p>Sala com frigobar para procedimentos.</p>
+        <a href="#" class="btn-ghost" style="padding:9px 16px; font-size:12px;">Reservar</a>
+      </div>
+      <div class="sala-card">
+        <h3>Espaço kids</h3>
+        <p>"O brincar também faz parte do atendimento."</p>
+        <a href="#" class="btn-ghost" style="padding:9px 16px; font-size:12px;">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="valores">
+  <div class="wrap">
+    <h2>Escolha como quer alugar</h2>
+    <div class="valores-grid">
+      <div class="price-card">
+        <b>Por hora</b>
+        <div class="valor">R$ 50</div>
+        <small>pacotes de 5h e 10h</small>
+      </div>
+      <div class="price-card">
+        <b>Diária</b>
+        <div class="valor">R$ 400</div>
+        <small>o dia inteiro</small>
+      </div>
+      <div class="price-card destaque">
+        <b>Período fixo</b>
+        <div class="valor">R$ 550<small style="display:inline;">/mês</small></div>
+        <small>+ R$ 300 por período adicional</small>
+      </div>
+      <div class="price-card">
+        <b>Mensal</b>
+        <div class="valor">1.700–2.500</div>
+        <small>conforme a sala</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>Rua Massapê, nº 155<br>Coophafé, Campo Grande/MS</div>
+      <div>WhatsApp: (67) 99853-7650</div>
+      <div>Instagram: @mariahespacocomercial</div>
+    </div>
+    <div class="copyright">© 2026 Mariah Espaço Comercial. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+</body>
+</html>

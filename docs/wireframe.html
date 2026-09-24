@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — Mariah Espaço Comercial</title>
+<style>
+  :root{
+    --bg:#f4f4f4; --line:#bdbdbd; --block:#e2e2e2; --block2:#d2d2d2;
+    --text:#333; --muted:#777; --btn:#3a3a3a; --btnbg:#dedede;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:40px 20px; background:#cfcfcf;
+    font-family: Arial, Helvetica, sans-serif; color:var(--text);
+  }
+  h1.page-title{ text-align:center; font-size:20px; margin:0 0 6px; color:#222; }
+  p.page-sub{ text-align:center; color:#555; margin:0 0 36px; font-size:13px; }
+
+  .legend{ max-width:900px; margin:0 auto 36px; background:#fff; border:1px solid var(--line); padding:14px 18px; font-size:12px; color:#555; }
+  .legend b{ color:#222; }
+
+  .viewport-label{ text-align:center; font-weight:bold; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:#333; margin:36px 0 14px; }
+
+  .device{ background:#fff; margin:0 auto; border:1px solid #999; box-shadow:0 4px 14px rgba(0,0,0,.15); }
+  .device.desktop{ width:1200px; }
+  .device.mobile{ width:375px; }
+
+  /* generic placeholder pieces */
+  .ph-title{ background:var(--block2); color:#222; font-weight:bold; padding:8px 10px; font-size:15px; border-radius:2px; }
+  .ph-sub{ background:var(--block); color:#555; padding:6px 10px; font-size:12px; margin-top:6px; border-radius:2px; }
+  .ph-text{ background:#ececec; color:#777; padding:8px 10px; font-size:11px; margin-top:6px; border-radius:2px; line-height:1.5; }
+  .ph-btn{ display:inline-block; background:var(--btnbg); border:1px solid #999; color:var(--btn); font-size:11px; font-weight:bold; padding:8px 14px; margin-top:8px; margin-right:8px; border-radius:3px; }
+  .ph-img{ background:repeating-linear-gradient(45deg,#dcdcdc,#dcdcdc 8px,#cfcfcf 8px,#cfcfcf 16px); border:1px dashed #999; color:#666; font-size:10px; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .ph-card{ border:1px solid #ccc; padding:10px; background:#fafafa; }
+  .ph-tag{ display:inline-block; background:var(--block); border:1px solid #bbb; font-size:10px; padding:4px 8px; margin:3px; border-radius:12px; color:#555; }
+
+  section.blk{ padding:26px 24px; border-bottom:1px dashed #ccc; }
+  section.blk:last-child{ border-bottom:none; }
+  .blk-label{ font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:#999; margin-bottom:8px; }
+
+  /* HEADER */
+  header.blk{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; border-bottom:1px solid #ccc; }
+  .logo-ph{ width:110px; height:34px; background:var(--block2); border-radius:2px; font-size:10px; display:flex; align-items:center; justify-content:center; color:#555; }
+  nav.desktop-nav{ display:flex; gap:14px; flex-wrap:wrap; }
+  nav.desktop-nav span{ background:var(--block); padding:6px 10px; font-size:11px; border-radius:2px; }
+  .burger{ width:34px; height:28px; background:var(--block2); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:14px; }
+
+  /* HERO */
+  .hero-inner{ max-width:640px; }
+  .device.mobile .hero-inner{ max-width:100%; }
+
+  /* GRIDS */
+  .grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:14px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
+  .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:14px; }
+  .device.mobile .grid-4, .device.mobile .grid-3, .device.mobile .grid-2{ grid-template-columns:1fr; }
+
+  /* GALERIA masonry-ish */
+  .gal-grid{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:90px; gap:8px; margin-top:14px; }
+  .gal-grid .ph-img:nth-child(3n){ grid-row:span 2; }
+  .device.mobile .gal-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:70px; }
+
+  /* PRICING */
+  .price-card .valor{ background:#d6d6d6; font-size:16px; font-weight:bold; padding:8px; text-align:center; margin:8px 0; border-radius:2px; }
+  .price-card.destaque{ border:2px solid #888; }
+
+  /* FOOTER */
+  footer.blk{ background:#ececec; }
+  .foot-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .device.mobile .foot-cols{ grid-template-columns:1fr; }
+  .copyright{ text-align:center; margin-top:16px; font-size:10px; color:#888; }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">Wireframe — Mariah Espaço Comercial</h1>
+<p class="page-sub">Etapa 2 do processo · tons de cinza, sem fotos reais, sem identidade visual — apenas blocos, hierarquia, ordem das seções e posição dos botões.</p>
+
+<div class="legend">
+  <b>Como ler:</b> blocos escuros = títulos · blocos médios = subtítulos/botões · blocos claros = texto de apoio · hachurado = foto (com nome do arquivo indicado quando relevante) · cápsulas = tags. Textos reais vêm de <b>docs/copy.md</b> só para facilitar a leitura da hierarquia — cor, fonte e espaçamento definitivos ficam para a etapa 3 (direção visual).
+</div>
+
+<!-- ================= DESKTOP ================= -->
+<div class="viewport-label">Versão desktop</div>
+<div class="device desktop">
+
+  <header class="blk">
+    <div class="logo-ph">LOGO</div>
+    <nav class="desktop-nav">
+      <span>Início</span><span>Sobre</span><span>Salas</span><span>Para quem é</span><span>Galeria</span><span>Valores</span><span>FAQ</span><span>Localização</span><span>Contato</span>
+    </nav>
+    <div class="ph-btn" style="margin:0;">Falar no WhatsApp</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="blk">
+    <div class="blk-label">1 · Hero</div>
+    <div class="hero-inner">
+      <div class="ph-title">Não é apenas onde você atende. É onde sua presença acontece.</div>
+      <div class="ph-sub">Seu consultório pronto, por hora ou por mês</div>
+      <div class="ph-text">11 salas prontas para profissionais da saúde, da estética e de negócios. Consultórios, salas de massoterapia, escritórios e sala de reuniões, por hora, diária ou mensal, sem os custos de uma estrutura própria.</div>
+      <div>
+        <span class="ph-btn">Reservar pelo WhatsApp</span>
+        <span class="ph-btn">Ver as salas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="blk">
+    <div class="blk-label">2 · Sobre</div>
+    <div class="grid-2">
+      <div>
+        <div class="ph-title">Um espaço criado com carinho, propósito e acolhimento</div>
+        <div class="ph-sub">Nasceu da dificuldade real de uma profissional em encontrar salas disponíveis</div>
+        <div class="ph-text">História da Jéssica, Rodrigo e Antônia — projeto de família, imóvel reformado do zero. Aqui, você entra, atende e brilha. O resto é com a gente.</div>
+        <div class="ph-sub" style="margin-top:10px;">Conforto para o profissional. Bem-estar para o cliente.</div>
+      </div>
+      <div class="ph-img" style="min-height:160px;">FOTO — fachada.jpg</div>
+    </div>
+  </section>
+
+  <!-- ESTRUTURA -->
+  <section class="blk">
+    <div class="blk-label">3 · Estrutura e conforto</div>
+    <div class="ph-title">Enquanto você cuida do seu trabalho, nós cuidamos de todos os detalhes.</div>
+    <div class="grid-4">
+      <div class="ph-card">01 · Estrutura completa</div>
+      <div class="ph-card">02 · Climatização total</div>
+      <div class="ph-card">03 · Recepção acolhedora</div>
+      <div class="ph-card">04 · Copa equipada</div>
+      <div class="ph-card">05 · Internet e água inclusas</div>
+      <div class="ph-card">06 · Limpeza e higienização</div>
+      <div class="ph-card">07 · Segurança monitorada</div>
+      <div class="ph-card">08 · Estacionamento</div>
+    </div>
+  </section>
+
+  <!-- SALAS -->
+  <section class="blk">
+    <div class="blk-label">4 · Salas</div>
+    <div class="ph-title">Uma sala para cada tipo de atendimento</div>
+    <div class="ph-sub">11 salas equipadas, dos consultórios de saúde e estética às salas para reuniões e cursos</div>
+    <div class="grid-4">
+      <div class="ph-card">Massoterapia<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Salas com maca<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Injetáveis<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Psicologia<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Espaço kids<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Sala de cursos<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Salas superiores (escritório/reuniões)<div class="ph-btn">Reservar</div></div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM É -->
+  <section class="blk">
+    <div class="blk-label">5 · Para quem é</div>
+    <div class="ph-title">Feito para quem está começando ou quer crescer sem custo fixo</div>
+    <div class="ph-sub">Ideal para profissionais que não querem arcar com aluguel fixo, mobília, internet e equipamentos</div>
+    <div style="margin-top:14px;">
+      <span class="ph-tag">Fisioterapeutas</span><span class="ph-tag">Psicólogos</span><span class="ph-tag">Nutricionistas</span><span class="ph-tag">Esteticistas</span><span class="ph-tag">Massoterapeutas</span><span class="ph-tag">Biomédicos</span><span class="ph-tag">Fonoaudiólogos</span><span class="ph-tag">Psicopedagogos</span><span class="ph-tag">Terapeutas integrativos</span><span class="ph-tag">Consultores e empresas</span>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="blk">
+    <div class="blk-label">6 · Galeria (amostra de ambientes)</div>
+    <div class="ph-title">Alguns ambientes do espaço</div>
+    <div class="ph-sub">Uma amostra de como são as salas e os ambientes comuns</div>
+    <div class="gal-grid">
+      <div class="ph-img">fachada</div>
+      <div class="ph-img">sala-espera</div>
+      <div class="ph-img">sala-maca</div>
+      <div class="ph-img">massoterapia</div>
+      <div class="ph-img">injetáveis</div>
+      <div class="ph-img">escritório</div>
+      <div class="ph-img">psicologia</div>
+      <div class="ph-img">kids</div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="blk">
+    <div class="blk-label">7 · Valores</div>
+    <div class="ph-title">Escolha como quer alugar</div>
+    <div class="ph-sub">Da hora avulsa ao plano mensal, sem burocracia para começar</div>
+    <div class="grid-4">
+      <div class="ph-card price-card">
+        <b>Por hora</b>
+        <div class="valor">R$ 50</div>
+        <div class="ph-text">Pacote 5h: R$ 225<br>Pacote 10h: R$ 400</div>
+        <div class="ph-btn">Quero por hora</div>
+      </div>
+      <div class="ph-card price-card">
+        <b>Diária</b>
+        <div class="valor">R$ 400</div>
+      </div>
+      <div class="ph-card price-card destaque">
+        <b>Período fixo</b>
+        <div class="valor">R$ 550/mês</div>
+        <div class="ph-text">+ R$ 300 por período adicional</div>
+      </div>
+      <div class="ph-card price-card">
+        <b>Mensal</b>
+        <div class="valor">R$ 1.700 – 2.500</div>
+        <div class="ph-btn">Quero o mensal</div>
+      </div>
+    </div>
+    <div class="ph-text" style="margin-top:14px;">Cadastro simples com documentos profissionais (sem CNPJ obrigatório) para hora/pacotes · contrato com fiador ou caução para o mensal.</div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="blk">
+    <div class="blk-label">8 · Perguntas frequentes</div>
+    <div class="ph-title">O que você precisa saber antes de começar</div>
+    <div class="grid-2" style="margin-top:14px;">
+      <div class="ph-card">Como funciona a locação por hora? <span style="float:right;">+</span></div>
+      <div class="ph-card">Preciso de CNPJ para alugar? <span style="float:right;">+</span></div>
+      <div class="ph-card">O que já está incluso no valor? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso garantir um horário fixo toda semana? <span style="float:right;">+</span></div>
+      <div class="ph-card">Como funciona o plano mensal? <span style="float:right;">+</span></div>
+      <div class="ph-card">De quem é a responsabilidade pelo atendimento? <span style="float:right;">+</span></div>
+      <div class="ph-card">Qual o horário de funcionamento, inclusive sábado? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso deixar meus materiais guardados na sala? <span style="float:right;">+</span></div>
+      <div class="ph-card">Como funciona cancelamento ou remarcação? <span style="float:right;">+</span></div>
+      <div class="ph-card">Meus clientes podem estacionar no local? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso levar minha própria maca ou equipamento? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso divulgar o endereço como meu endereço de atendimento? <span style="float:right;">+</span></div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO -->
+  <section class="blk">
+    <div class="blk-label">9 · Localização</div>
+    <div class="grid-2">
+      <div>
+        <div class="ph-title">Onde estamos</div>
+        <div class="ph-sub">Coophafé, região da Via Parque, próximo à Avenida Mato Grosso</div>
+        <div class="ph-text">Rua Massapê, nº 155, Coophafé, Campo Grande/MS</div>
+        <div class="ph-btn">Ver no mapa</div>
+      </div>
+      <div class="ph-img" style="min-height:160px;">MAPA</div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="blk" style="text-align:center;">
+    <div class="blk-label">10 · CTA final</div>
+    <div class="ph-title" style="display:inline-block;">O espaço perfeito para o seu atendimento existe</div>
+    <div class="ph-sub" style="display:inline-block;">E nós podemos provar</div><br>
+    <div class="ph-btn">Falar no WhatsApp</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="blk">
+    <div class="blk-label">11 · Rodapé</div>
+    <div class="foot-cols">
+      <div class="ph-text">Rua Massapê, nº 155<br>Coophafé, Campo Grande/MS</div>
+      <div class="ph-text">WhatsApp: (67) 99853-7650</div>
+      <div class="ph-text">Instagram: @mariahespacocomercial</div>
+    </div>
+    <div class="copyright">© 2026 Mariah Espaço Comercial. Todos os direitos reservados.</div>
+  </footer>
+
+</div>
+
+<!-- ================= MOBILE ================= -->
+<div class="viewport-label">Versão celular (375px)</div>
+<div class="device mobile">
+
+  <header class="blk">
+    <div class="logo-ph" style="width:80px;">LOGO</div>
+    <div class="burger">☰</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="blk">
+    <div class="blk-label">1 · Hero</div>
+    <div class="hero-inner">
+      <div class="ph-title">Não é apenas onde você atende. É onde sua presença acontece.</div>
+      <div class="ph-sub">Seu consultório pronto, por hora ou por mês</div>
+      <div class="ph-text">11 salas prontas para profissionais da saúde, da estética e de negócios. Por hora, diária ou mensal, sem os custos de uma estrutura própria.</div>
+      <div>
+        <span class="ph-btn" style="display:block; text-align:center;">Reservar pelo WhatsApp</span>
+        <span class="ph-btn" style="display:block; text-align:center;">Ver as salas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="blk">
+    <div class="blk-label">2 · Sobre</div>
+    <div class="ph-img" style="min-height:140px; margin-bottom:10px;">FOTO — fachada.jpg</div>
+    <div class="ph-title">Um espaço criado com carinho, propósito e acolhimento</div>
+    <div class="ph-sub">Nasceu da dificuldade real de uma profissional em encontrar salas disponíveis</div>
+    <div class="ph-text">História da Jéssica, Rodrigo e Antônia. Aqui, você entra, atende e brilha. O resto é com a gente.</div>
+    <div class="ph-sub" style="margin-top:10px;">Conforto para o profissional. Bem-estar para o cliente.</div>
+  </section>
+
+  <!-- ESTRUTURA -->
+  <section class="blk">
+    <div class="blk-label">3 · Estrutura e conforto</div>
+    <div class="ph-title">Enquanto você cuida do seu trabalho, nós cuidamos de todos os detalhes.</div>
+    <div class="grid-4">
+      <div class="ph-card">01 · Estrutura completa</div>
+      <div class="ph-card">02 · Climatização total</div>
+      <div class="ph-card">03 · Recepção acolhedora</div>
+      <div class="ph-card">04 · Copa equipada</div>
+      <div class="ph-card">05 · Internet e água inclusas</div>
+      <div class="ph-card">06 · Limpeza e higienização</div>
+      <div class="ph-card">07 · Segurança monitorada</div>
+      <div class="ph-card">08 · Estacionamento</div>
+    </div>
+  </section>
+
+  <!-- SALAS -->
+  <section class="blk">
+    <div class="blk-label">4 · Salas</div>
+    <div class="ph-title">Uma sala para cada tipo de atendimento</div>
+    <div class="ph-sub">11 salas equipadas</div>
+    <div class="grid-4">
+      <div class="ph-card">Massoterapia<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Salas com maca<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Injetáveis<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Psicologia<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Espaço kids<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Sala de cursos<div class="ph-btn">Reservar</div></div>
+      <div class="ph-card">Salas superiores<div class="ph-btn">Reservar</div></div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM É -->
+  <section class="blk">
+    <div class="blk-label">5 · Para quem é</div>
+    <div class="ph-title">Feito para quem está começando ou quer crescer sem custo fixo</div>
+    <div class="ph-sub">Sem aluguel fixo, mobília, internet e equipamentos</div>
+    <div style="margin-top:14px;">
+      <span class="ph-tag">Fisioterapeutas</span><span class="ph-tag">Psicólogos</span><span class="ph-tag">Nutricionistas</span><span class="ph-tag">Esteticistas</span><span class="ph-tag">Massoterapeutas</span><span class="ph-tag">Biomédicos</span><span class="ph-tag">Fonoaudiólogos</span><span class="ph-tag">Psicopedagogos</span><span class="ph-tag">Terapeutas integrativos</span><span class="ph-tag">Consultores e empresas</span>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="blk">
+    <div class="blk-label">6 · Galeria (amostra de ambientes)</div>
+    <div class="ph-title">Alguns ambientes do espaço</div>
+    <div class="ph-sub">Uma amostra de como são as salas</div>
+    <div class="gal-grid">
+      <div class="ph-img">fachada</div>
+      <div class="ph-img">sala-espera</div>
+      <div class="ph-img">sala-maca</div>
+      <div class="ph-img">massoterapia</div>
+      <div class="ph-img">injetáveis</div>
+      <div class="ph-img">escritório</div>
+      <div class="ph-img">psicologia</div>
+      <div class="ph-img">kids</div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="blk">
+    <div class="blk-label">7 · Valores</div>
+    <div class="ph-title">Escolha como quer alugar</div>
+    <div class="ph-sub">Da hora avulsa ao plano mensal</div>
+    <div class="grid-4">
+      <div class="ph-card price-card">
+        <b>Por hora</b>
+        <div class="valor">R$ 50</div>
+        <div class="ph-text">Pacote 5h: R$ 225<br>Pacote 10h: R$ 400</div>
+        <div class="ph-btn" style="display:block; text-align:center;">Quero por hora</div>
+      </div>
+      <div class="ph-card price-card">
+        <b>Diária</b>
+        <div class="valor">R$ 400</div>
+      </div>
+      <div class="ph-card price-card destaque">
+        <b>Período fixo</b>
+        <div class="valor">R$ 550/mês</div>
+        <div class="ph-text">+ R$ 300 por período adicional</div>
+      </div>
+      <div class="ph-card price-card">
+        <b>Mensal</b>
+        <div class="valor">R$ 1.700 – 2.500</div>
+        <div class="ph-btn" style="display:block; text-align:center;">Quero o mensal</div>
+      </div>
+    </div>
+    <div class="ph-text" style="margin-top:14px;">Cadastro simples (sem CNPJ obrigatório) para hora/pacotes · fiador ou caução para o mensal.</div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="blk">
+    <div class="blk-label">8 · Perguntas frequentes</div>
+    <div class="ph-title">O que você precisa saber antes de começar</div>
+    <div class="grid-4" style="margin-top:14px;">
+      <div class="ph-card">Como funciona a locação por hora? <span style="float:right;">+</span></div>
+      <div class="ph-card">Preciso de CNPJ para alugar? <span style="float:right;">+</span></div>
+      <div class="ph-card">O que já está incluso no valor? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso garantir um horário fixo toda semana? <span style="float:right;">+</span></div>
+      <div class="ph-card">Como funciona o plano mensal? <span style="float:right;">+</span></div>
+      <div class="ph-card">De quem é a responsabilidade pelo atendimento? <span style="float:right;">+</span></div>
+      <div class="ph-card">Qual o horário de funcionamento, inclusive sábado? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso deixar meus materiais guardados na sala? <span style="float:right;">+</span></div>
+      <div class="ph-card">Como funciona cancelamento ou remarcação? <span style="float:right;">+</span></div>
+      <div class="ph-card">Meus clientes podem estacionar no local? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso levar minha própria maca ou equipamento? <span style="float:right;">+</span></div>
+      <div class="ph-card">Posso divulgar o endereço como meu endereço de atendimento? <span style="float:right;">+</span></div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO -->
+  <section class="blk">
+    <div class="blk-label">9 · Localização</div>
+    <div class="ph-img" style="min-height:140px; margin-bottom:10px;">MAPA</div>
+    <div class="ph-title">Onde estamos</div>
+    <div class="ph-sub">Coophafé, região da Via Parque</div>
+    <div class="ph-text">Rua Massapê, nº 155, Coophafé, Campo Grande/MS</div>
+    <div class="ph-btn" style="display:block; text-align:center;">Ver no mapa</div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="blk" style="text-align:center;">
+    <div class="blk-label">10 · CTA final</div>
+    <div class="ph-title">O espaço perfeito para o seu atendimento existe</div>
+    <div class="ph-sub">E nós podemos provar</div><br>
+    <div class="ph-btn" style="display:block; text-align:center;">Falar no WhatsApp</div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="blk">
+    <div class="blk-label">11 · Rodapé</div>
+    <div class="foot-cols">
+      <div class="ph-text">Rua Massapê, nº 155<br>Coophafé, Campo Grande/MS</div>
+      <div class="ph-text">WhatsApp: (67) 99853-7650</div>
+      <div class="ph-text">Instagram: @mariahespacocomercial</div>
+    </div>
+    <div class="copyright">© 2026 Mariah Espaço Comercial. Todos os direitos reservados.</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
