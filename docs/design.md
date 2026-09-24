@@ -124,3 +124,10 @@ Aprovar a direção combinada (ou pedir ajustes) antes de seguirmos para a etapa
 Para o site não ficar "sólido" demais, as seções Hero, Estrutura e CTA final ganharam uma foto real de fundo (com camada escura por cima para o texto continuar legível): `sala-espera-letreiro.jpg`, `sala-cursos.jpg` e `sala-maca-janela.jpg`, respectivamente. Em telas grandes (desktop, com mouse) o fundo fica fixo (leve parallax); no celular ele rola normalmente, porque `background-attachment: fixed` quebra no iPhone (ver "Aprendizados" no `CLAUDE.md`). A cor sólida escura continua por baixo como respaldo, então nada depende só da imagem carregar.
 
 A seção "Para quem é" ganhou o mesmo tratamento, mas com uma foto externa (não é do espaço da Mariah, é só ambientação): `assets/externas/para-quem-e-fundo.jpg`, banco de imagens Unsplash (uso livre, inclusive comercial, sem exigência de crédito — [Unsplash License](https://unsplash.com/license)), foto de Alec Krum. Camada clara por cima (creme) para manter a seção "leve" no ritmo de cores claro/escuro do site.
+
+## Segunda rodada de ajustes (etapa 5)
+
+- **Fotos de fundo trocadas:** Hero passou a usar `sala-maca-janela.jpg` (a pedido do cliente, no lugar de `sala-espera-letreiro.jpg`) e o CTA final passou a usar `sala-massoterapia.jpg` (para não repetir a mesma foto em duas seções).
+- **Grade de Salas (7 cartões em 4 colunas):** o último cartão ("Salas superiores") agora ocupa 2 colunas na última linha, fechando o espaço que sobrava.
+- **Galeria (13 fotos):** reordenada para a foto da fachada (paisagem, boa resolução) ficar por último — o último item sempre estica para fechar a última linha inteira (`grid-column: 1 / -1`), funciona em qualquer largura de tela sem deixar buraco.
+- **Localização:** virou um grid de 2 colunas — texto + endereço à esquerda, mapa real do Google Maps embutido à direita (`iframe` apontando para o endereço exato, sem precisar de chave de API). Mostra a rua de verdade e a proximidade com a Via Parque/Av. Mato Grosso, em vez de uma foto genérica.

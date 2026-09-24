@@ -212,9 +212,9 @@ section{ padding:var(--s-12) 0; }
   background-image:linear-gradient(rgba(21,17,13,.85), rgba(21,17,13,.92)), var(--bg-photo);
   background-size:cover; background-repeat:no-repeat;
 }
-.hero{ --bg-photo:url('../assets/fotos/sala-espera-letreiro.jpg'); background-position:center 20%; }
+.hero{ --bg-photo:url('../assets/fotos/sala-maca-janela.jpg'); background-position:center 35%; }
 .estrutura{ --bg-photo:url('../assets/fotos/sala-cursos.jpg'); background-position:center 30%; }
-.cta-final{ --bg-photo:url('../assets/fotos/sala-maca-janela.jpg'); background-position:center; }
+.cta-final{ --bg-photo:url('../assets/fotos/sala-massoterapia.jpg'); background-position:center 40%; }
 
 /* parallax sutil só no desktop (no iPhone background-attachment:fixed quebra) */
 @media (min-width:1000px) and (hover:hover){
@@ -277,8 +277,15 @@ section{ padding:var(--s-12) 0; }
 .sala-card p{ font-size:14px; opacity:.9; flex-grow:1; }
 .sala-card .btn{ align-self:flex-start; margin-top:10px; }
 
+/* 7 cartões em grid de 4 colunas deixam 1 vaga sobrando na 2ª linha —
+   o último cartão ocupa o espaço restante em vez de deixar buraco */
+.salas-grid .sala-card:last-child{ grid-column:span 2; }
+
 @media (max-width:980px){ .salas-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:560px){ .salas-grid{ grid-template-columns:1fr; } }
+@media (max-width:560px){
+  .salas-grid{ grid-template-columns:1fr; }
+  .salas-grid .sala-card:last-child{ grid-column:span 1; }
+}
 
 /* ==========================================================================
    Para quem é
@@ -307,6 +314,8 @@ section{ padding:var(--s-12) 0; }
   gap:var(--s-2);
 }
 .galeria-grid figure{ margin:0; }
+/* última foto fecha a linha final inteira, não importa quantas colunas o auto-fit gerar */
+.galeria-grid figure:last-child{ grid-column:1 / -1; }
 .galeria-grid img{
   width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:8px; object-position:center;
 }
@@ -387,10 +396,19 @@ section{ padding:var(--s-12) 0; }
 /* ==========================================================================
    Localização
    ========================================================================== */
-.localizacao{ text-align:center; }
 .localizacao h2{ margin-bottom:6px; }
-.localizacao .sub{ margin:0 auto; }
 .localizacao .endereco{ font-size:18px; font-weight:700; margin-top:var(--s-2); }
+.localizacao-grid{ align-items:stretch; }
+.mapa-wrap{
+  border-radius:10px; overflow:hidden; border:1px solid rgba(74,51,35,.25);
+  min-height:280px; box-shadow:0 8px 24px rgba(21,17,13,.12);
+}
+.mapa-embed{ width:100%; height:100%; min-height:280px; border:0; display:block; filter:saturate(.85) contrast(1.02); }
+
+@media (max-width:860px){
+  .localizacao-grid{ text-align:center; }
+  .localizacao-grid .actions{ justify-content:center; }
+}
 
 /* ==========================================================================
    CTA final
