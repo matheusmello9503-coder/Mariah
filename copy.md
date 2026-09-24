@@ -15,7 +15,9 @@ Início · Sobre · Salas · Para quem é · Galeria · Valores · FAQ · Locali
 **Objetivo da seção:** causar a primeira impressão, comunicar em segundos o que é o espaço e para quem é, e levar direto ao WhatsApp.
 
 **Título:**
-Seu consultório pronto, por hora ou por mês
+Não é apenas onde você atende. É onde sua *presença* acontece.
+
+*(Etapa 5: frase de marca trazida da seção Salas para cá, como título de impacto do Hero, no lugar de "Seu consultório pronto, por hora ou por mês" — que passou a ser comunicado pelo subtítulo/texto de apoio abaixo.)*
 
 **Subtítulo:**
 Salas equipadas para profissionais da saúde, da estética e de negócios, no coração do Coophafé, em Campo Grande.
@@ -97,11 +99,10 @@ Uma sala para cada tipo de atendimento
 6. **Sala de cursos** — 1 sala com projetor, usada também para treinamentos e encontros profissionais.
 7. **Salas superiores** — salas maiores, com opção de mobiliário personalizado, para consultório fixo, escritório ou reuniões.
 
-**Frase de apoio da seção (reaproveitada da marca):**
-"Não é apenas onde você atende. É onde sua presença acontece."
-
 **Botões:**
 - Por cartão de sala: "Reservar esta sala pelo WhatsApp" → mensagem pré-preenchida indicando o nome do tipo de sala (ex.: "Olá! Tenho interesse na sala de massoterapia do Mariah Espaço Comercial.")
+
+*(Etapa 5: a frase de marca "Não é apenas onde você atende..." saiu daqui e virou o título do Hero — ver seção 1. Removida para não repetir.)*
 
 ---
 
