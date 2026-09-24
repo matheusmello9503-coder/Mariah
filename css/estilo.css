@@ -207,6 +207,20 @@ section{ padding:var(--s-12) 0; }
 }
 .para-quem-e{ background:var(--creme-2); }
 
+/* Seções com foto de fundo — cor sólida sempre por baixo como fallback */
+.hero, .estrutura, .cta-final{
+  background-image:linear-gradient(rgba(21,17,13,.85), rgba(21,17,13,.92)), var(--bg-photo);
+  background-size:cover; background-repeat:no-repeat;
+}
+.hero{ --bg-photo:url('../assets/fotos/sala-espera-letreiro.jpg'); background-position:center 20%; }
+.estrutura{ --bg-photo:url('../assets/fotos/sala-cursos.jpg'); background-position:center 30%; }
+.cta-final{ --bg-photo:url('../assets/fotos/sala-maca-janela.jpg'); background-position:center; }
+
+/* parallax sutil só no desktop (no iPhone background-attachment:fixed quebra) */
+@media (min-width:1000px) and (hover:hover){
+  .hero, .estrutura, .cta-final{ background-attachment:fixed; }
+}
+
 /* ==========================================================================
    Hero
    ========================================================================== */
@@ -269,6 +283,11 @@ section{ padding:var(--s-12) 0; }
 /* ==========================================================================
    Para quem é
    ========================================================================== */
+.para-quem-e{
+  background-image:linear-gradient(rgba(241,233,220,.9), rgba(241,233,220,.94)), url('../assets/externas/para-quem-e-fundo.jpg');
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+}
+@media (min-width:1000px) and (hover:hover){ .para-quem-e{ background-attachment:fixed; } }
 .para-quem-e h2{ max-width:720px; }
 .tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:var(--s-3); }
 .tags li{
@@ -392,6 +411,20 @@ section{ padding:var(--s-12) 0; }
 .logo-footer{ height:38px; margin-bottom:12px; }
 .foot-grid a{ text-decoration:none; }
 .foot-grid a:hover{ color:var(--dourado); }
+.social-link{
+  display:inline-flex; align-items:center; gap:10px;
+}
+.social-icon{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:50%; border:1.5px solid var(--dourado);
+  color:var(--dourado); flex-shrink:0;
+}
+.social-icon svg{ width:18px; height:18px; }
+.social-link:hover .social-icon{ background:var(--dourado); color:var(--preto-2); }
+
+@media (max-width:700px){
+  .social-link{ justify-content:center; }
+}
 .copyright{
   text-align:center; font-size:12px; opacity:.55; margin:0;
   border-top:1px solid rgba(255,255,255,.1); padding-top:var(--s-2);

@@ -118,3 +118,9 @@ Amostra de página completa (todas as seções principais em sequência) em `doc
 ## Próximo passo
 
 Aprovar a direção combinada (ou pedir ajustes) antes de seguirmos para a etapa 4 (construção: `index.html`, `css/estilo.css`, `js/main.js`).
+
+## Ajuste feito na etapa 5 (revisão): fotos de fundo
+
+Para o site não ficar "sólido" demais, as seções Hero, Estrutura e CTA final ganharam uma foto real de fundo (com camada escura por cima para o texto continuar legível): `sala-espera-letreiro.jpg`, `sala-cursos.jpg` e `sala-maca-janela.jpg`, respectivamente. Em telas grandes (desktop, com mouse) o fundo fica fixo (leve parallax); no celular ele rola normalmente, porque `background-attachment: fixed` quebra no iPhone (ver "Aprendizados" no `CLAUDE.md`). A cor sólida escura continua por baixo como respaldo, então nada depende só da imagem carregar.
+
+A seção "Para quem é" ganhou o mesmo tratamento, mas com uma foto externa (não é do espaço da Mariah, é só ambientação): `assets/externas/para-quem-e-fundo.jpg`, banco de imagens Unsplash (uso livre, inclusive comercial, sem exigência de crédito — [Unsplash License](https://unsplash.com/license)), foto de Alec Krum. Camada clara por cima (creme) para manter a seção "leve" no ritmo de cores claro/escuro do site.
