@@ -97,6 +97,7 @@
     var img = el("j-foto");
     img.src = foto.src;
     img.alt = foto.alt;
+    img.style.objectPosition = foto.pos;
     el("j-miniaturas").querySelectorAll("button").forEach(function (b, k) {
       b.setAttribute("aria-current", k === i ? "true" : "false");
     });
@@ -154,8 +155,7 @@
     ultimoFoco = document.activeElement;
     janela.classList.toggle("modo-sala", modo === "sala");
     janela.classList.toggle("modo-visita", modo === "visita");
-    el("j-galeria").hidden = modo === "visita";
-    el("j-detalhes").hidden = modo === "visita";
+    ["j-galeria", "j-cabecalho", "j-valores"].forEach(function (id) { el(id).hidden = modo === "visita"; });
 
     if (modo === "sala") preencherSala(lerCartao(cartao));
     else prepararVisita();
@@ -165,7 +165,9 @@
     document.body.classList.add("travado");
     janela.scrollTop = 0;
 
-    if (focoReserva && modo === "sala") {
+    // No desktop o painel de reserva já aparece ao lado da foto; no celular,
+    // "Reservar" desce direto até o calendário.
+    if (focoReserva && modo === "sala" && window.matchMedia("(max-width: 900px)").matches) {
       form.scrollIntoView({ block: "start" });
     }
     janela.querySelector(".janela-fechar").focus({ preventScroll: true });
