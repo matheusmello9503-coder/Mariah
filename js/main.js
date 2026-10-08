@@ -136,7 +136,7 @@
     mostrarFoto(0);
 
     el("r-titulo").textContent = "Reservar esta sala";
-    el("r-intro").textContent = "Escolha o dia e o período. A mensagem chega pronta no WhatsApp da Mariah.";
+    el("r-intro").textContent = "Escolha o dia e o período.";
     el("r-enviar").textContent = "Solicitar reserva pelo WhatsApp";
     el("r-nota").textContent = "A reserva é confirmada pela nossa equipe no WhatsApp, conforme a disponibilidade da sala.";
   }
