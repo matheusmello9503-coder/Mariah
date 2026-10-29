@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maquete v2 — Salas | Mariah Espaço Comercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cafe:#15110C; --mocha:#3A2D20; --ouro:#C9A24B; --ouro-claro:#E8D2A2; --creme:#F5EFE3;
+    --texto:#2B2119; --texto-suave:#6B5D4F; --linha:#E2D6C2; --branco:#FFFDF9;
+    --serif:'Cormorant Garamond', Georgia, serif; --sans:'Jost', Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--texto);background:var(--creme)}
+  img{display:block;max-width:100%}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0}
+  em{font-style:italic;color:var(--ouro)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* faixa de aviso da maquete */
+  .aviso{background:#7A2E1F;color:#fff;font-size:13px;text-align:center;padding:8px 16px;letter-spacing:.02em}
+  .aviso b{font-weight:600}
+
+  /* notas de proposta */
+  .nota{border:1.5px dashed #B07A2A;background:#FFF6E3;color:#5A4220;border-radius:8px;padding:10px 14px;font-size:13.5px;line-height:1.5;margin:14px 0}
+  .nota::before{content:"NOTA DA PROPOSTA · ";font-weight:600;letter-spacing:.06em;font-size:11.5px;color:#B07A2A}
+  .pend{background:#FDE7E2;color:#8A2B1A;border-radius:4px;padding:1px 6px;font-weight:600;font-size:.9em;white-space:nowrap}
+
+  /* cabeçalho */
+  header{background:var(--cafe);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(201,162,75,.25)}
+  .hd{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+  .hd img{height:42px;width:auto}
+  .hd nav{display:flex;gap:28px}
+  .hd nav a{color:var(--creme);text-decoration:none;font-size:15px;letter-spacing:.02em}
+  .hd nav a:hover{color:var(--ouro-claro)}
+  @media (max-width:900px){.hd nav{display:none}}
+
+  /* botões */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.04em;padding:13px 24px;border-radius:4px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:.15s}
+  .btn-ouro{background:var(--ouro);color:var(--cafe)}
+  .btn-ouro:hover{background:#B8903C}
+  .btn-linha{background:transparent;color:var(--creme);border-color:var(--ouro)}
+  .btn-linha:hover{background:rgba(201,162,75,.12)}
+  .btn-escuro{background:var(--cafe);color:var(--creme)}
+  .btn-escuro:hover{background:var(--mocha)}
+  .btn-claro{background:transparent;color:var(--cafe);border-color:var(--cafe)}
+  .btn-claro:hover{background:rgba(21,17,12,.06)}
+  .btn-sm{padding:10px 16px;font-size:14px}
+
+  /* hero */
+  .hero{color:var(--creme);text-align:center;padding:88px 0 96px;
+    background:linear-gradient(rgba(21,17,12,.84),rgba(21,17,12,.92)),url('../assets/fotos/sala-maca-janela.jpg') center 35%/cover}
+  .hero h1{font-size:clamp(34px,5vw,60px);max-width:860px;margin:0 auto 18px}
+  .hero p{max-width:640px;margin:0 auto 30px;opacity:.88}
+  .hero .acoes{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* faixa de confiança */
+  .confianca{background:var(--mocha);color:var(--ouro-claro)}
+  .confianca ul{list-style:none;margin:0;padding:18px 0;display:flex;justify-content:center;flex-wrap:wrap;gap:12px 40px;font-size:15px;letter-spacing:.03em}
+  .confianca li::before{content:"✦ ";color:var(--ouro)}
+
+  /* seção salas */
+  section{padding:84px 0}
+  .kicker{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#9A7A33;font-weight:600;margin-bottom:10px}
+  .sec-titulo{font-size:clamp(32px,4vw,48px);margin-bottom:12px}
+  .sec-sub{color:var(--texto-suave);max-width:640px;margin:0}
+  .cab-sec{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+
+  .filtros{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 28px}
+  .chip-filtro{font-family:var(--sans);font-size:14.5px;padding:8px 18px;border-radius:999px;border:1.5px solid var(--linha);background:var(--branco);color:var(--texto);cursor:pointer}
+  .chip-filtro[aria-pressed="true"]{background:var(--cafe);color:var(--creme);border-color:var(--cafe)}
+
+  .grade{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:980px){.grade{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.grade{grid-template-columns:1fr}}
+
+  .sala{background:var(--branco);border:1px solid var(--linha);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s, transform .2s}
+  .sala:hover{box-shadow:0 14px 34px rgba(21,17,12,.12);transform:translateY(-2px)}
+  .sala[hidden]{display:none}
+  .foto{position:relative;aspect-ratio:4/3;background:#ddd;overflow:hidden;cursor:pointer}
+  .foto img{width:100%;height:100%;object-fit:cover}
+  .selo{position:absolute;font-size:13px;font-weight:600;border-radius:4px;padding:5px 10px;letter-spacing:.03em}
+  .selo-m2{top:12px;left:12px;background:var(--cafe);color:var(--ouro-claro)}
+  .selo-m2.pendente{background:#8A2B1A;color:#fff}
+  .selo-fotos{bottom:12px;right:12px;background:rgba(21,17,12,.72);color:#fff;font-weight:500}
+  .corpo{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .corpo h3{font-size:28px;margin-bottom:2px}
+  .qtd{color:var(--texto-suave);font-size:14.5px;margin-bottom:12px}
+  .itens{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .item{font-size:13px;background:var(--creme);border:1px solid var(--linha);border-radius:999px;padding:3px 10px}
+  .ideal{font-size:14.5px;color:var(--texto-suave);margin:0 0 16px}
+  .ideal b{color:var(--texto);font-weight:500}
+  .rodape-sala{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--linha);padding-top:16px}
+  .preco{font-size:14px;color:var(--texto-suave);line-height:1.3}
+  .preco b{display:block;font-family:var(--serif);font-size:26px;color:var(--cafe);font-weight:600}
+  .rodape-sala .botoes{display:flex;gap:8px}
+
+  /* cartão largo (fecha a linha incompleta) */
+  .sala.larga{grid-column:1/-1;flex-direction:row}
+  .sala.larga .foto{flex:0 0 46%;aspect-ratio:auto;min-height:320px}
+  .sala.larga .foto img{position:absolute;inset:0}
+  @media (max-width:640px){.sala.larga{flex-direction:column}.sala.larga .foto{aspect-ratio:4/3;min-height:0}}
+
+  /* como funciona */
+  .passos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+  @media (max-width:800px){.passos{grid-template-columns:1fr}}
+  .passo{border-top:2px solid var(--ouro);padding-top:16px}
+  .passo .n{font-family:var(--serif);font-style:italic;font-size:22px;color:#9A7A33}
+  .passo h3{font-size:26px;margin:4px 0 6px}
+  .passo p{margin:0;color:var(--texto-suave);font-size:16px}
+  .escuro{background:var(--cafe);color:var(--creme)}
+  .escuro .sec-sub,.escuro .passo p{color:rgba(245,239,227,.75)}
+  .escuro .kicker{color:var(--ouro)}
+
+  /* ambientes comuns */
+  .ambientes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+  @media (max-width:700px){.ambientes{grid-template-columns:1fr}}
+  .ambientes figure{margin:0}
+  .ambientes img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px}
+  .ambientes figcaption{font-size:14px;color:var(--texto-suave);margin-top:6px;text-align:center}
+
+  /* modal de detalhe */
+  .fundo-modal{position:fixed;inset:0;background:rgba(21,17,12,.72);z-index:50;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:32px 16px}
+  .fundo-modal.aberto{display:flex}
+  .modal{background:var(--branco);border-radius:14px;max-width:1040px;width:100%;overflow:hidden;position:relative}
+  .fechar{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(21,17,12,.75);color:#fff;font-size:22px;cursor:pointer;z-index:2}
+  .modal-galeria .principal{aspect-ratio:16/9;background:#ccc;position:relative}
+  .modal-galeria .principal img{width:100%;height:100%;object-fit:cover}
+  .miniaturas{display:flex;gap:8px;padding:10px;background:var(--cafe);overflow-x:auto}
+  .miniaturas img{width:96px;height:68px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.6;border:2px solid transparent}
+  .miniaturas img.ativa{opacity:1;border-color:var(--ouro)}
+  .modal-corpo{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;padding:28px}
+  @media (max-width:860px){.modal-corpo{grid-template-columns:1fr}}
+  .modal-corpo h2{font-size:40px}
+  .ficha{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:16px 0 20px;font-size:15.5px}
+  .ficha dt{color:var(--texto-suave)}
+  .ficha dd{margin:0;font-weight:500}
+  table.precos{width:100%;border-collapse:collapse;font-size:15px;margin-bottom:16px}
+  table.precos td{padding:8px 0;border-bottom:1px solid var(--linha)}
+  table.precos td:last-child{text-align:right;font-weight:600}
+  .regras{font-size:14px;color:var(--texto-suave);margin:0;padding-left:18px}
+  .reservar{background:var(--creme);border:1px solid var(--linha);border-radius:12px;padding:22px;align-self:start}
+  .reservar h3{font-size:28px;margin-bottom:4px}
+  .fase{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--cafe);color:var(--ouro-claro);border-radius:3px;padding:3px 8px;margin-bottom:12px}
+  .reservar label{display:block;font-size:13.5px;color:var(--texto-suave);margin:10px 0 4px}
+  .reservar input,.reservar select{width:100%;font-family:var(--sans);font-size:15.5px;padding:10px 12px;border:1px solid var(--linha);border-radius:6px;background:var(--branco);color:var(--texto)}
+  .linha2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .previa{display:none;margin-top:14px;background:#E7F6E7;border:1px solid #9CCB9C;border-radius:10px;padding:12px 14px;font-size:14.5px;line-height:1.5}
+  .previa.visivel{display:block}
+  .previa small{display:block;color:#3E6B3E;margin-bottom:4px;font-weight:600;letter-spacing:.04em}
+  .fase2{margin-top:16px;border:1.5px dashed var(--linha);border-radius:10px;padding:12px;opacity:.75}
+  .fase2 .dias{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}
+  .fase2 .dia{text-align:center;font-size:12.5px;border:1px solid var(--linha);border-radius:6px;padding:6px 2px;background:var(--branco)}
+  .fase2 .dia b{display:block;font-size:15px}
+  .visitar{display:block;text-align:center;margin-top:14px;font-size:14.5px;color:var(--cafe)}
+
+  footer{background:var(--cafe);color:rgba(245,239,227,.6);text-align:center;font-size:13px;padding:24px 16px}
+</style>
+</head>
+<body>
+
+<div class="aviso"><b>MAQUETE da proposta v2</b> · não é o site final · medidas das salas <b>pendentes</b> · nenhum botão envia mensagem</div>
+
+<header>
+  <div class="wrap hd">
+    <img src="../assets/marca/logo-mariah-transparente.png" alt="Mariah Espaço Comercial">
+    <nav aria-label="Navegação">
+      <a href="#salas">Salas</a><a href="#como-funciona">Como funciona</a><a href="#salas">Valores</a><a href="#salas">Dúvidas</a><a href="#salas">Localização</a>
+    </nav>
+    <a class="btn btn-ouro btn-sm" href="#salas">Agendar visita</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Não é apenas onde você atende. É onde sua <em>presença</em> acontece.</h1>
+    <p>Salas prontas para profissionais da saúde, da estética e de negócios, no Coophafé, em Campo Grande. Por hora, diária, período fixo ou mensal.</p>
+    <div class="acoes">
+      <a class="btn btn-ouro" href="#salas">Agendar visita</a>
+      <a class="btn btn-linha" href="#salas">Ver salas e reservar</a>
+    </div>
+  </div>
+</section>
+
+<div class="confianca">
+  <ul class="wrap">
+    <li>11 salas prontas</li><li>5 modalidades de locação</li><li>Recepção e sala de espera</li><li>Estacionamento</li><li>Wi-fi, água e café</li>
+  </ul>
+</div>
+
+<!-- ===================== SALAS (CATÁLOGO) ===================== -->
+<section id="salas">
+  <div class="wrap">
+    <div class="cab-sec">
+      <div>
+        <div class="kicker">Salas</div>
+        <h2 class="sec-titulo">Escolha a sua <em>sala</em>.</h2>
+        <p class="sec-sub">11 salas prontas, com recepção, ar-condicionado e wi-fi inclusos. Veja fotos, medidas e reserve o seu horário.</p>
+      </div>
+    </div>
+
+    <div class="filtros" role="group" aria-label="Filtrar salas">
+      <button class="chip-filtro" aria-pressed="true" data-filtro="todas">Todas</button>
+      <button class="chip-filtro" aria-pressed="false" data-filtro="saude">Saúde</button>
+      <button class="chip-filtro" aria-pressed="false" data-filtro="estetica">Estética</button>
+      <button class="chip-filtro" aria-pressed="false" data-filtro="negocios">Negócios</button>
+      <button class="chip-filtro" aria-pressed="false" data-filtro="infantil">Infantil</button>
+    </div>
+
+    <div class="grade" id="grade"></div>
+
+    <div class="nota">Cada cartão mostra foto, medida, quantidade, itens, público e preço "a partir de". "Ver sala" abre o detalhe, com galeria, tabela de preços e reserva. Os selos em vermelho ("__ m²") esperam as medidas reais. O preço "a partir de R$ 50/hora" vale para todas as salas? Confirmar. Quando a última linha fica incompleta, o último cartão vira um cartão largo, para não sobrar espaço vazio.</div>
+  </div>
+</section>
+
+<!-- ===================== COMO FUNCIONA ===================== -->
+<section id="como-funciona" class="escuro">
+  <div class="wrap">
+    <div class="kicker">Como funciona</div>
+    <h2 class="sec-titulo">Da escolha ao atendimento, em <em>três passos</em>.</h2>
+    <p class="sec-sub">Prefere conhecer antes? Agende uma visita: mostramos a sala certa para a sua área.</p>
+    <div class="passos">
+      <div class="passo"><span class="n">01</span><h3>Escolha a sala</h3><p>Filtre pela sua área e compare fotos, medidas e itens de cada sala.</p></div>
+      <div class="passo"><span class="n">02</span><h3>Reserve</h3><p>Informe data, período e modalidade. Hoje a confirmação é pelo WhatsApp; em breve, direto aqui.</p></div>
+      <div class="passo"><span class="n">03</span><h3>Atenda</h3><p>Faça o cadastro com seus documentos profissionais (CNPJ não é obrigatório) e receba seus clientes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AMBIENTES COMUNS ===================== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Ambientes comuns</div>
+    <h2 class="sec-titulo">Tudo o que fica <em>em volta</em> da sua sala.</h2>
+    <div class="ambientes">
+      <figure><img src="../assets/fotos/sala-espera-letreiro.jpg" alt="Recepção e sala de espera" style="object-position:center 30%"><figcaption>Recepção e sala de espera</figcaption></figure>
+      <figure><img src="../assets/fotos/copa.jpg" alt="Copa equipada"><figcaption>Copa equipada</figcaption></figure>
+      <figure><img src="../assets/fotos/fachada.jpg" alt="Fachada do Mariah Espaço Comercial" style="object-position:center 25%"><figcaption>Fachada · Rua Massapê, 155</figcaption></figure>
+    </div>
+    <div class="nota">Substitui a galeria atual. As fotos de cada sala passam para dentro do respectivo cartão, e aqui ficam só os espaços compartilhados. Assim, nenhuma foto aparece duas vezes.</div>
+  </div>
+</section>
+
+<footer>Maquete · Proposta v2 do site · Mariah Espaço Comercial · Outubro de 2026</footer>
+
+<!-- ===================== MODAL: DETALHE DA SALA ===================== -->
+<div class="fundo-modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-nome">
+  <div class="modal">
+    <button class="fechar" id="fechar" aria-label="Fechar">×</button>
+    <div class="modal-galeria">
+      <div class="principal"><img id="m-foto" src="" alt=""></div>
+      <div class="miniaturas" id="m-miniaturas"></div>
+    </div>
+    <div class="modal-corpo">
+      <div>
+        <div class="kicker" id="m-grupo"></div>
+        <h2 id="m-nome"></h2>
+        <dl class="ficha">
+          <dt>Medida</dt><dd><span class="pend">__ m² (pendente)</span></dd>
+          <dt>Quantidade</dt><dd id="m-qtd"></dd>
+          <dt>Itens</dt><dd id="m-itens"></dd>
+          <dt>Ideal para</dt><dd id="m-ideal"></dd>
+        </dl>
+        <table class="precos" aria-label="Valores">
+          <tr><td>Por hora</td><td>R$ 50</td></tr>
+          <tr><td>Pacote 5 horas</td><td>R$ 225</td></tr>
+          <tr><td>Pacote 10 horas</td><td>R$ 400</td></tr>
+          <tr><td>Diária</td><td>R$ 400</td></tr>
+          <tr><td>Período fixo semanal</td><td>R$ 550/mês + R$ 300 por adicional</td></tr>
+          <tr><td>Mensal</td><td>R$ 1.700 a R$ 2.500</td></tr>
+        </table>
+        <ul class="regras">
+          <li>Hora e pacotes: pagamento no ato, com cadastro e documentos profissionais.</li>
+          <li>Cancelamento com pelo menos 1 hora de antecedência; para clientes novos, sinal de 50%.</li>
+          <li>Mensal: contrato com fiador ou caução.</li>
+        </ul>
+        <div class="nota">Preços e regras atuais do site. Se a estratégia de preço mudar (por exemplo, a diária), o valor muda aqui e no agente ao mesmo tempo, porque os dois leem o mesmo arquivo de salas.</div>
+      </div>
+
+      <aside class="reservar">
+        <span class="fase">Fase 1 · reserva pelo WhatsApp</span>
+        <h3>Reservar esta sala</h3>
+        <form id="form-reserva">
+          <label for="f-data">Data</label>
+          <input id="f-data" type="date" required>
+          <div class="linha2">
+            <div>
+              <label for="f-periodo">Período</label>
+              <select id="f-periodo"><option>Manhã</option><option>Tarde</option><option>Dia inteiro</option></select>
+            </div>
+            <div>
+              <label for="f-modalidade">Modalidade</label>
+              <select id="f-modalidade"><option>Por hora</option><option>Pacote 5 horas</option><option>Pacote 10 horas</option><option>Diária</option><option>Período fixo semanal</option><option>Mensal</option></select>
+            </div>
+          </div>
+          <div class="linha2">
+            <div><label for="f-nome">Seu nome</label><input id="f-nome" type="text" placeholder="Ex.: Ana" required></div>
+            <div><label for="f-prof">Profissão</label><input id="f-prof" type="text" placeholder="Ex.: fisioterapeuta" required></div>
+          </div>
+          <button class="btn btn-escuro" type="submit" style="width:100%;margin-top:16px">Reservar pelo WhatsApp</button>
+        </form>
+        <div class="previa" id="previa"><small>MENSAGEM QUE SERIA ENVIADA (na maquete, nada é enviado)</small><span id="previa-texto"></span></div>
+
+        <div class="fase2" aria-hidden="true">
+          <span class="fase" style="background:var(--mocha)">Fase 2 · horários em tempo real</span>
+          <div style="font-size:13.5px;color:var(--texto-suave)">Calendário com os horários livres da sala, lendo a mesma agenda que o agente de WhatsApp consulta.</div>
+          <div class="dias">
+            <div class="dia">seg<b>12</b></div><div class="dia">ter<b>13</b></div><div class="dia">qua<b>14</b></div><div class="dia">qui<b>15</b></div><div class="dia">sex<b>16</b></div>
+          </div>
+        </div>
+        <a class="visitar" href="#como-funciona">Prefere conhecer antes? <b>Agende uma visita</b></a>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script>
+// Dados reais do briefing; medidas e itens marcados como pendentes até a confirmação do cliente.
+const SALAS = [
+  { id:'massoterapia', nome:'Massoterapia', qtd:'3 salas', grupos:['estetica','saude'], grupoTxt:'Estética e saúde',
+    fotos:[['sala-massoterapia.jpg','center']], itens:['Maca de madeira','Ar-condicionado','Wi-fi'], ideal:'Massoterapeutas e terapeutas' },
+  { id:'com-maca', nome:'Salas com maca', qtd:'4 salas', grupos:['saude','estetica'], grupoTxt:'Saúde e estética',
+    fotos:[['sala-maca-janela.jpg','center'],['sala-maca-mesa-quadro-arvore.jpg','center 35%'],['sala-maca-quadros-trigo.jpg','center'],['sala-maca-quadros-gratidao.jpg','center']],
+    itens:['Maca','Pia (algumas)','Ar-condicionado'], ideal:'Esteticistas, fisioterapeutas e biomédicos' },
+  { id:'injetaveis', nome:'Injetáveis', qtd:'1 sala', grupos:['estetica','saude'], grupoTxt:'Estética e saúde',
+    fotos:[['sala-injetaveis.jpg','center 30%']], itens:['Frigobar','Cadeira reclinável','Pia'], ideal:'Procedimentos injetáveis e estética' },
+  { id:'psicologia', nome:'Psicologia', qtd:'1 sala', grupos:['saude'], grupoTxt:'Saúde',
+    fotos:[['sala-psicologia.jpg','center'],['sala-psicologia-alternativa.jpg','center 40%']], itens:['Poltronas','Recamier','Ar-condicionado'], ideal:'Psicólogos e terapeutas' },
+  { id:'kids', nome:'Espaço kids', qtd:'1 sala', grupos:['infantil'], grupoTxt:'Infantil',
+    fotos:[['espaco-kids.jpg','center']], itens:['Mesa infantil','Tapete emborrachado','Brinquedos'], ideal:'Atendimento infantil: psicopedagogos, fonoaudiólogos' },
+  { id:'cursos', nome:'Sala de cursos', qtd:'1 sala · __ pessoas', grupos:['negocios'], grupoTxt:'Negócios e cursos',
+    fotos:[['sala-cursos.jpg','center 40%']], itens:['Projetor','Quadro branco','Cadeiras em fileiras'], ideal:'Cursos, treinamentos e workshops' },
+  { id:'superiores', nome:'Salas superiores', qtd:'Quantidade a confirmar', grupos:['negocios'], grupoTxt:'Negócios',
+    fotos:[['sala-escritorio-reunioes.jpg','center 35%']], itens:['Mobiliário personalizável','Mesa de reunião'], ideal:'Consultório fixo, escritório ou reuniões' }
+];
+const BASE = '../assets/fotos/';
+const grade = document.getElementById('grade');
+
+function cartao(s){
+  const el = document.createElement('article');
+  el.className = 'sala';
+  el.dataset.grupos = s.grupos.join(' ');
+  const [foto, pos] = s.fotos[0];
+  el.innerHTML = `
+    <div class="foto" data-abrir="${s.id}">
+      <img src="${BASE + foto}" alt="${s.nome}" loading="lazy" style="object-position:${pos}">
+      <span class="selo selo-m2 pendente">__ m²</span>
+      ${s.fotos.length > 1 ? `<span class="selo selo-fotos">${s.fotos.length} fotos</span>` : ''}
+    </div>
+    <div class="corpo">
+      <h3>${s.nome}</h3>
+      <div class="qtd">${s.qtd}</div>
+      <div class="itens">${s.itens.map(i => `<span class="item">${i}</span>`).join('')}</div>
+      <p class="ideal"><b>Ideal para:</b> ${s.ideal}</p>
+      <div class="rodape-sala">
+        <div class="preco">a partir de<b>R$ 50/hora</b></div>
+        <div class="botoes">
+          <button class="btn btn-claro btn-sm" data-abrir="${s.id}">Ver sala</button>
+          <button class="btn btn-escuro btn-sm" data-abrir="${s.id}" data-reservar="1">Reservar</button>
+        </div>
+      </div>
+    </div>`;
+  return el;
+}
+SALAS.forEach(s => grade.appendChild(cartao(s)));
+
+// Cartão largo quando a última linha ficar com um cartão só.
+function ajustarUltimaLinha(){
+  const visiveis = [...grade.children].filter(c => !c.hidden);
+  visiveis.forEach(c => c.classList.remove('larga'));
+  const colunas = getComputedStyle(grade).gridTemplateColumns.split(' ').length;
+  if (colunas > 1 && visiveis.length % colunas === 1) visiveis[visiveis.length - 1].classList.add('larga');
+}
+ajustarUltimaLinha();
+window.addEventListener('resize', ajustarUltimaLinha);
+
+document.querySelectorAll('.chip-filtro').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.chip-filtro').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const f = b.dataset.filtro;
+  [...grade.children].forEach(c => { c.hidden = f !== 'todas' && !c.dataset.grupos.split(' ').includes(f); });
+  ajustarUltimaLinha();
+}));
+
+// Modal de detalhe
+const modal = document.getElementById('modal');
+let salaAtual = null;
+function mostrarFoto(i){
+  const [foto, pos] = salaAtual.fotos[i];
+  const img = document.getElementById('m-foto');
+  img.src = BASE + foto; img.alt = salaAtual.nome; img.style.objectPosition = pos;
+  document.querySelectorAll('#m-miniaturas img').forEach((m, k) => m.classList.toggle('ativa', k === i));
+}
+function abrir(id, focoReserva){
+  salaAtual = SALAS.find(s => s.id === id);
+  document.getElementById('m-nome').textContent = salaAtual.nome;
+  document.getElementById('m-grupo').textContent = salaAtual.grupoTxt;
+  document.getElementById('m-qtd').textContent = salaAtual.qtd;
+  document.getElementById('m-itens').textContent = salaAtual.itens.join(' · ');
+  document.getElementById('m-ideal').textContent = salaAtual.ideal;
+  const mini = document.getElementById('m-miniaturas');
+  mini.innerHTML = salaAtual.fotos.map(([f], i) => `<img src="${BASE + f}" alt="Foto ${i + 1}" data-i="${i}">`).join('');
+  mini.querySelectorAll('img').forEach(m => m.addEventListener('click', () => mostrarFoto(+m.dataset.i)));
+  mostrarFoto(0);
+  document.getElementById('previa').classList.remove('visivel');
+  modal.classList.add('aberto');
+  modal.scrollTop = 0;
+  if (focoReserva) setTimeout(() => document.getElementById('f-data').focus(), 50);
+}
+grade.addEventListener('click', e => {
+  const alvo = e.target.closest('[data-abrir]');
+  if (alvo) abrir(alvo.dataset.abrir, !!alvo.dataset.reservar);
+});
+document.getElementById('fechar').addEventListener('click', () => modal.classList.remove('aberto'));
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('aberto'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('aberto'); });
+
+// Fase 1: monta a mensagem do WhatsApp (na maquete só mostra a prévia)
+document.getElementById('form-reserva').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = document.getElementById('f-data').value;
+  const data = d ? d.split('-').reverse().join('/') : '';
+  const msg = `Olá! Quero reservar uma sala. Sala: ${salaAtual.nome} · Data: ${data} · Período: ${document.getElementById('f-periodo').value.toLowerCase()} · Modalidade: ${document.getElementById('f-modalidade').value.toLowerCase()}. Sou ${document.getElementById('f-nome').value}, ${document.getElementById('f-prof').value}.`;
+  document.getElementById('previa-texto').textContent = msg;
+  document.getElementById('previa').classList.add('visivel');
+});
+</script>
+</body>
+</html>
