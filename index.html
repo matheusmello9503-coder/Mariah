@@ -661,7 +661,9 @@
             <label class="campo">Seu nome<input id="r-nome" type="text" autocomplete="given-name" placeholder="Ex.: Ana"></label>
             <label class="campo">Profissão<input id="r-prof" type="text" placeholder="Ex.: fisioterapeuta"></label>
           </div>
+          <label class="campo so-sala">WhatsApp com DDD<input id="r-whats" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(67) 99999-9999" maxlength="16"></label>
           <label class="check so-sala"><input type="checkbox" id="r-primeira"><span>É a minha primeira reserva no Mariah</span></label>
+          <label class="check so-sala"><input type="checkbox" id="r-aceite"><span>Aceito receber a confirmação da reserva pelo WhatsApp</span></label>
         </fieldset>
 
         <div class="resumo so-sala" id="r-resumo" aria-live="polite">
@@ -678,6 +680,14 @@
         <p class="r-erro" id="r-erro" role="alert"></p>
         <button type="submit" class="btn btn-primary btn-block" id="r-enviar">Enviar pelo WhatsApp</button>
         <p class="r-nota" id="r-nota"></p>
+
+        <div class="enviado" id="r-enviado" role="status" hidden>
+          <span class="enviado-icone" aria-hidden="true">✓</span>
+          <p class="enviado-titulo">Solicitação enviada</p>
+          <p class="enviado-resumo" id="r-enviado-resumo"></p>
+          <p id="r-enviado-texto"></p>
+          <button type="button" class="btn btn-outline btn-sm" data-fechar>Fechar</button>
+        </div>
       </form>
     </div>
   </div>

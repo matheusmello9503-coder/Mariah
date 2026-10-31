@@ -13,9 +13,17 @@
   // equipe confirma a disponibilidade pelo WhatsApp.
   // Contrato esperado: GET AGENDA_URL?sala=<tipo-de-sala>&data=AAAA-MM-DD
   //   → { "ocupados": [11, 14] }  (horas de início sem nenhuma sala livre daquele tipo)
-  // Para mostrar aos sócios como fica, abra o site com ?demo-agenda (horários fictícios).
+  // Para mostrar aos sócios como fica, abra o site com ?demo (horários fictícios e envio simulado).
   var AGENDA_URL = "";
-  var DEMO_AGENDA = /[?&]demo-agenda\b/.test(location.search);
+  var DEMO_AGENDA = /[?&]demo(-agenda)?\b/.test(location.search);
+
+  // Envio automático do pedido para o assistente (fluxo do n8n com a API oficial do WhatsApp).
+  // Com RESERVA_URL preenchido, o site pede o WhatsApp da pessoa, envia o pedido e o
+  // assistente escreve para ela na hora. Vazio: o site abre o WhatsApp com o pedido pronto.
+  // Contrato: POST RESERVA_URL com JSON { sala, modalidade, data, inicio, fim, periodo,
+  //   periodos_semana, valor, nome, profissao, whatsapp, primeira_reserva, aceite, mensagem } → 2xx
+  var RESERVA_URL = "";
+  var AUTOMATICO = !!RESERVA_URL || DEMO_AGENDA;
 
   var PRECO = { hora: 50, pacote5: 225, pacote10: 400, diaria: 400, fixo: 550, fixoAdicional: 300 };
   var ABRE = 8, FECHA = 17, FECHA_SABADO = 12;
@@ -149,8 +157,10 @@
 
     el("r-titulo").textContent = "Reservar esta sala";
     el("r-intro").textContent = "Escolha a modalidade, o dia e o horário. O valor aparece no resumo.";
-    el("r-enviar").textContent = "Solicitar reserva pelo WhatsApp";
-    el("r-nota").textContent = "O WhatsApp abre com o seu pedido pronto. A confirmação do horário e o pagamento são feitos por lá.";
+    el("r-enviar").textContent = AUTOMATICO ? "Solicitar reserva" : "Solicitar reserva pelo WhatsApp";
+    el("r-nota").textContent = AUTOMATICO
+      ? "Na mesma hora, você recebe a nossa mensagem no WhatsApp para confirmar o horário e o pagamento."
+      : "O WhatsApp abre com o seu pedido pronto. A confirmação do horário e o pagamento são feitos por lá.";
   }
 
   function prepararVisita() {
@@ -584,8 +594,44 @@
     form.querySelector('input[name="modalidade"][value="hora"]').checked = true;
     form.querySelectorAll('input[name="periodo"], input[name="periodo-fixo"]').forEach(function (r) { r.checked = false; r.disabled = false; });
     el("r-erro").textContent = "";
+    form.classList.remove("foi-enviado");
+    el("r-enviado").hidden = true;
+    el("r-enviar").disabled = false;
     desenharCalendario();
     atualizar();
+  }
+
+  // WhatsApp e aceite só aparecem quando o assistente escreve primeiro
+  el("r-whats").closest("label").hidden = !AUTOMATICO;
+  el("r-aceite").closest("label").hidden = !AUTOMATICO;
+
+  function soDigitos(t) { return t.replace(/\D/g, ""); }
+  el("r-whats").addEventListener("input", function () {
+    var d = soDigitos(this.value).slice(0, 11);
+    var f = d;
+    if (d.length > 2) f = "(" + d.slice(0, 2) + ") " + d.slice(2);
+    if (d.length > 7) f = "(" + d.slice(0, 2) + ") " + d.slice(2, d.length - 4) + "-" + d.slice(d.length - 4);
+    this.value = f;
+  });
+
+  function mostrarEnviado(whats) {
+    var c = calcular();
+    el("r-enviado-resumo").innerHTML = "<strong>" + salaAtual.nome + "</strong><br>" + c.quando + "<br>" +
+      c.totalRotulo + ": <strong>" + c.totalTexto + "</strong>";
+    el("r-enviado-texto").innerHTML = "Em instantes, você recebe a nossa mensagem no WhatsApp <strong class=\"tel\">" + whats +
+      "</strong> com esses dados. É só responder por lá para continuar a reserva." +
+      (RESERVA_URL ? "" : '<span class="enviado-demo">Demonstração: nenhuma mensagem foi enviada.</span>');
+    form.classList.add("foi-enviado");
+    el("r-enviado").hidden = false;
+    form.scrollIntoView({ block: "start" });
+  }
+
+  function abrirWhatsApp(texto) {
+    var url = WHATSAPP + encodeURIComponent(texto);
+    // Com "noopener" o window.open sempre devolve null; por isso o opener é cortado à mão.
+    var aba = window.open(url, "_blank");
+    if (aba) aba.opener = null;
+    else window.location.href = url; // pop-up bloqueado: abre na mesma aba
   }
 
   /* ------------------------------------------------------------------
@@ -617,8 +663,15 @@
       if (m === "fixo" && !periodoFixo) faltando.push("o período");
     }
     if (!nome) faltando.push("o seu nome");
+    var whats = el("r-whats").value.trim();
+    var automatico = modo === "sala" && AUTOMATICO;
+    if (automatico && soDigitos(whats).length < 10) faltando.push("o seu WhatsApp com DDD");
     if (faltando.length) {
-      el("r-erro").textContent = "Falta escolher " + juntar(faltando) + ".";
+      el("r-erro").textContent = "Falta informar " + juntar(faltando) + ".";
+      return;
+    }
+    if (automatico && !el("r-aceite").checked) {
+      el("r-erro").textContent = "Marque a opção para receber a confirmação pelo WhatsApp.";
       return;
     }
     if (modo === "sala" && m === "diaria" && agenda.ocupados.length) {
@@ -653,11 +706,40 @@
     linhas.push("Nome: " + nome);
     if (prof) linhas.push("Profissão: " + prof);
     if (modo === "sala") linhas.push("Primeira reserva: " + (el("r-primeira").checked ? "sim" : "não"));
+    if (automatico) linhas.push("WhatsApp: " + whats);
 
-    var url = WHATSAPP + encodeURIComponent(linhas.join("\n"));
-    // Com "noopener" o window.open sempre devolve null; por isso o opener é cortado à mão.
-    var aba = window.open(url, "_blank");
-    if (aba) aba.opener = null;
-    else window.location.href = url; // pop-up bloqueado: abre na mesma aba
+    if (!automatico) { abrirWhatsApp(linhas.join("\n")); return; }
+
+    // O assistente escreve para a pessoa: o pedido vai para o n8n (ou é simulado na demonstração)
+    if (!RESERVA_URL) { mostrarEnviado(whats); return; }
+    var pedido = {
+      sala: salaAtual.nome,
+      modalidade: NOME_MODALIDADE[m],
+      data: diaEscolhido ? dataISO(diaEscolhido) : null,
+      inicio: porHoras(m) ? inicio : m === "diaria" ? ABRE : null,
+      fim: porHoras(m) ? inicio + duracao : m === "diaria" ? FECHA : null,
+      periodo: m === "fixo" ? periodoFixo.value : null,
+      periodos_semana: m === "fixo" ? qtdFixo : null,
+      valor: calcular().totalTexto,
+      nome: nome,
+      profissao: prof,
+      whatsapp: "55" + soDigitos(whats),
+      primeira_reserva: el("r-primeira").checked,
+      aceite: true,
+      mensagem: linhas.join("\n")
+    };
+    el("r-enviar").disabled = true;
+    el("r-enviar").textContent = "Enviando…";
+    fetch(RESERVA_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(pedido) })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); mostrarEnviado(whats); })
+      .catch(function () {
+        // Se o envio automático falhar, a pessoa não perde o pedido: abre o WhatsApp com ele pronto
+        el("r-erro").textContent = "Não conseguimos enviar agora. Abrimos o WhatsApp com o seu pedido pronto.";
+        abrirWhatsApp(linhas.join("\n"));
+      })
+      .then(function () {
+        el("r-enviar").disabled = false;
+        el("r-enviar").textContent = "Solicitar reserva";
+      });
   });
 })();
